@@ -116,7 +116,7 @@ export interface FlagButtonProps {
   withCallingCodeButton?: boolean
   withFlagButton?: boolean
   containerButtonStyle?: StyleProp<ViewStyle>
-  buttonProps: Omit<TouchableOpacityProps, 'onPress'>
+  buttonProps?: Omit<TouchableOpacityProps, 'onPress'>
   countryCode?: CountryCode
   placeholder: string
   onOpen?(): void
