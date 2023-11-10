@@ -6,6 +6,7 @@ import {
   StyleProp,
   ViewStyle,
   TextProps,
+  TouchableOpacityProps,
 } from 'react-native'
 import { CountryCode } from './types'
 import { Flag } from './Flag'
@@ -82,9 +83,7 @@ const FlagWithSomething = memo(
     return (
       <View style={styles.flagWithSomethingContainer}>
         {countryCode ? (
-          <Flag
-            {...{ withEmoji, countryCode, withFlagButton, flagSize }}
-          />
+          <Flag {...{ withEmoji, countryCode, withFlagButton, flagSize }} />
         ) : (
           <FlagText allowFontScaling={allowFontScaling}>{placeholder}</FlagText>
         )}
@@ -117,6 +116,7 @@ export interface FlagButtonProps {
   withCallingCodeButton?: boolean
   withFlagButton?: boolean
   containerButtonStyle?: StyleProp<ViewStyle>
+  buttonProps: Omit<TouchableOpacityProps, 'onPress'>
   countryCode?: CountryCode
   placeholder: string
   onOpen?(): void
@@ -133,10 +133,11 @@ export const FlagButton = ({
   containerButtonStyle,
   onOpen,
   placeholder,
+  buttonProps,
 }: FlagButtonProps) => {
   const { flagSizeButton: flagSize } = useTheme()
   return (
-    <TouchableOpacity activeOpacity={0.7} onPress={onOpen}>
+    <TouchableOpacity activeOpacity={0.7} onPress={onOpen} {...buttonProps}>
       <View
         style={[
           styles.container,
