@@ -138,10 +138,7 @@ export const getCountriesAsync = async (
   }
 
   if (preferredCountries && !withAlphaFilter) {
-    const newCountryCodeList = [
-      ...preferredCountries,
-      ...CountryCodeList.filter((code) => !preferredCountries.includes(code)),
-    ]
+    const newCountryCodeList = [...preferredCountries, ...CountryCodeList]
 
     const countries = newCountryCodeList
       .filter(isCountryPresent(countriesRaw))
