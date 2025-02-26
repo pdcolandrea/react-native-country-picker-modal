@@ -235,7 +235,8 @@ export const CountryList = (props: CountryListProps) => {
         })}
         {...{
           data: search(filter, data),
-          keyExtractor: (item: Country) => item?.cca2,
+          keyExtractor: (item: Country, index: number) =>
+            `${item?.cca2}-${index}`,
           onScrollToIndexFailed,
           ItemSeparatorComponent,
           initialNumToRender,
